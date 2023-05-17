@@ -7,7 +7,7 @@ export const axiosError = (error, endpoint) => {
       error.message || error.response.data || 'Error en el servidor';
 
     return {
-      message,
+      message
     };
   } else if (error.request) {
     // The request was made but no response was received

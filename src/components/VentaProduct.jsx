@@ -1,17 +1,19 @@
 import React from 'react';
-import { useForm } from 'react-hook-form'
-
+import { useForm } from 'react-hook-form';
 
 function VentaProduct() {
-
-  const { register, formState: {errors}, handleSubmit } = useForm();
+  const {
+    register,
+    formState: { errors },
+    handleSubmit
+  } = useForm();
 
   const onSubmit = async (event) => {
     const newData = {
       codigo_barras: event.codigo_barras,
       cantidad_pro: event.cantidad_pro
     };
-  }
+  };
 
   return (
     <div className='grid h-full w-full place-items-center  '>
@@ -20,11 +22,11 @@ function VentaProduct() {
           Venta de Productos
         </h1>
 
-        <form action=''
-         className='grid grid-cols-2'
-         onSubmit={handleSubmit(onSubmit)}
-
-         >
+        <form
+          action=''
+          className='grid grid-cols-2'
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <div className='p-2'>
             <h3>Codigo de Barras: </h3>
           </div>
@@ -32,9 +34,14 @@ function VentaProduct() {
             <input
               type='text'
               className='rounded-lg border-2 border-[#44403c]'
-              {...register('codigo_barras', { required: true, pattern: /^[0-9]+$/i })}
+              {...register('codigo_barras', {
+                required: true,
+                pattern: /^[0-9]+$/i
+              })}
             />
-            {errors.codigo_barras?.type === 'pattern' && <p>Solo se aceptan numeros</p>} 
+            {errors.codigo_barras?.type === 'pattern' && (
+              <p>Solo se aceptan numeros</p>
+            )}
           </div>
 
           <div className='p-2'>
