@@ -1,1 +1,1 @@
-export {default as NewLot} from './NewLot'
+export { default as NewLot } from './NewLot';

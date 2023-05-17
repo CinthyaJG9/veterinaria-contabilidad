@@ -1,8 +1,7 @@
+import LibroMain from '@/components/libro/main.jsx';
 
-export default function Libro() {
-    return (
-        <div>
-            <h1>Libros de Balance</h1>
-        </div>
-    )
-}
+const Libro = () => {
+  return <LibroMain />;
+};
+
+export default Libro;

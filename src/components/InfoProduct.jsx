@@ -46,7 +46,6 @@ const InfoProduct = () => {
           Realizar Compra
         </button>
       </div>
-
     </div>
   );
 };
