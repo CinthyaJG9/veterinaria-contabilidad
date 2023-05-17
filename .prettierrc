@@ -2,5 +2,6 @@
   "useTabs": false,
   "singleQuote": true,
   "jsxSingleQuote": true,
-  "trailingComma": "none"
+  "trailingComma": "none",
+  "tabWidth": 2
 }
