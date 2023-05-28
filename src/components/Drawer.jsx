@@ -16,6 +16,7 @@ const listItems = [
   {
     label: 'Inventario',
     icon: <CiBoxes className='text-2xl' />,
+    path: '/inventario' // o el path que corresponda
   }
 ];
 

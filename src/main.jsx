@@ -27,7 +27,7 @@ const router = createBrowserRouter([
     )
   },
   {
-    path: '/Inventario',
+    path: '/inventario',
     element: (
       <Nav>
         <Storage />

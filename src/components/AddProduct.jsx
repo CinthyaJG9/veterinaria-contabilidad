@@ -87,7 +87,7 @@ const AddProduct = () => {
   };
 
   return (
-    <div className='MuiBox-root z-0 flex h-screen w-full flex-col items-center justify-center gap-5'>
+    <div className='z-0 flex h-screen w-full flex-col items-center justify-center gap-5 mt-30'>
       <form
         className='flex flex-col items-center justify-center gap-5'
         onSubmit={handleSubmit(onSubmit)}
@@ -96,14 +96,14 @@ const AddProduct = () => {
           <tbody>
             <tr>
               <th>
-                <h1 className='font-Inter p-8 text-2xl font-bold'>
+                <h1 className='font-Inter p-3 text-2xl font-bold'>
                   Agregar Productos:
                 </h1>
               </th>
             </tr>
             <tr>
               <th>
-                <p className='font-Inter p-8 text-left text-xl'>
+                <p className='font-Inter p-3 text-left text-xl'>
                   {' '}
                   Nombre del Producto:{' '}
                 </p>
@@ -127,7 +127,7 @@ const AddProduct = () => {
 
             <tr>
               <th>
-                <p className='font-Inter p-8 text-left text-xl'>
+                <p className='font-Inter p-3 text-left text-xl'>
                   {' '}
                   Codigo del Producto:{' '}
                 </p>
@@ -151,7 +151,7 @@ const AddProduct = () => {
             {/* Checar esto, los catalogos para mostrarlos en los selects y asignarselo al producto a registrar */}
             <tr>
               <th>
-                <p className='font-Inter p-8 text-left text-xl	'>
+                <p className='font-Inter p-3 text-left text-xl	'>
                   {' '}
                   Marca del Producto:{' '}
                 </p>
@@ -176,7 +176,7 @@ const AddProduct = () => {
             </tr>
             <tr>
               <th>
-                <p className='font-Inter p-8 text-left text-xl	'>
+                <p className='font-Inter p-3 text-left text-xl	'>
                   {' '}
                   Categoria del Producto:{' '}
                 </p>
@@ -201,7 +201,7 @@ const AddProduct = () => {
             </tr>
             <tr>
               <th>
-                <p className='font-Inter p-8 text-left text-xl'> Animal: </p>
+                <p className='font-Inter p-3 text-left text-xl'> Animal: </p>
               </th>
               <th>
                 <select
@@ -225,7 +225,7 @@ const AddProduct = () => {
             <tr></tr>
             <tr>
               <th>
-                <p className='font-Inter p-8 text-left text-xl'>
+                <p className='font-Inter p-3 text-left text-xl'>
                   {' '}
                   Precio del Producto:{' '}
                 </p>
@@ -266,7 +266,7 @@ const AddProduct = () => {
             </tr> */}
             <tr>
               <th>
-                <p className='font-Inter p-8 text-left text-xl	'> Estado: </p>
+                <p className='font-Inter p-3 text-left text-xl	'> Estado: </p>
               </th>
               <th>
                 <select

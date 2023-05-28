@@ -74,7 +74,7 @@ const NewLot = () => {
   }, []);
 
   return (
-    <div className='grid h-full w-full place-items-center '>
+    <div className='grid h-full w-full place-items-center pt-20 '>
       <ToastContainer
         position='top-right'
         autoClose={5000}
