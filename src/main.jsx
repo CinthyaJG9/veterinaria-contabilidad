@@ -17,6 +17,10 @@ import { BASE_URL_API, axiosError, axiosSuccess } from '@/libs';
 import Libro from '@/pages/Libro/index.jsx';
 import Nav from './components/Nav';
 
+import { SWRConfig } from 'swr'
+import { apiVet } from './services/api/instaceApi'
+
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -102,6 +106,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <SWRConfig value={{ fetcher: (url) => apiVet.get(url).then(({data}) => data).catch(axiosError) }}>
+      <RouterProvider router={router} />
+    </SWRConfig>
   </React.StrictMode>
 );

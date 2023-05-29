@@ -1,22 +1,27 @@
-import { AiOutlineShoppingCart, AiOutlineUser } from 'react-icons/ai';
+import { AiOutlineShoppingCart, AiOutlineUser, AiFillBook} from 'react-icons/ai';
+import { BsCashCoin } from 'react-icons/bs';
 import { CiBoxes } from 'react-icons/ci';
 import { Link } from 'react-router-dom';
 
 const listItems = [
   {
-    label: 'Pago Gastos Fijos',
-    icon: <AiOutlineShoppingCart className='text-2xl' />,
-    path: '/pago-gastos-fijos' // o el path que corresponda
+    label: 'Libro',
+    icon: <AiFillBook className='text-2xl' />,
+    path: '/Libro' // o el path que corresponda
   },
   {
-    label: 'Pago Gastos Generales',
-    icon: <AiOutlineShoppingCart className='text-2xl' />,
-    path: '/pago-gastos-generales' // o el path que corresponda
+    label: 'Pago Gastos Fijos',
+    icon: <BsCashCoin className='text-2xl' />,
+    path: '/pago-gastos-fijos' // o el path que corresponda
   },
+  // {
+  //   label: 'Pago Gastos Generales',
+  //   icon: <AiOutlineShoppingCart className='text-2xl' />,
+  //   path: '/pago-gastos-generales' // o el path que corresponda
+  // },
   {
     label: 'Inventario',
     icon: <CiBoxes className='text-2xl' />,
-    path: '/inventario' // o el path que corresponda
   }
 ];
 

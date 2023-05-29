@@ -24,7 +24,7 @@ const AddServices = () => {
         {
           headers: {
             'x-token':
-              'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJmMzIwZjQyOS03NGQ5LTQ3ZGQtYjc0Ny0zMjhlOWM3YTE2Y2EiLCJpYXQiOjE2ODE5NjcxNjcsImV4cCI6MTY4MjU3MTk2N30.l1coPHj-uH7YuOqZgc5EEOh3tltyPzIWParcvMamnSc'
+              'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIwYjIyMjI3Zi1hZDEyLTRkNDMtYmRlNC1lZTM1ZjVhMGZmMTAiLCJpYXQiOjE2ODUzMjg3OTgsImV4cCI6MTY4NTkzMzU5OH0.ASIdcj93mqhL6duor5OzbTd1IvdS7PIPbZduYrWlSBU'
           }
         }
       );
