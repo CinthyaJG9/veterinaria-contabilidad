@@ -1,16 +1,13 @@
 import { DataGrid } from '@mui/x-data-grid';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios from "axios";
 
-const URL = 'https://veterinariamap6iv6-production.up.railway.app/api/v1';
+import { useProduct } from "../hooks/useSWR";
 
-const disponibility = (boolean) => {
-  if (boolean) {
-    return 'Disponible';
-  } else {
-    return 'No disponible';
-  }
-};
+
+const disponibility = (boolean) => boolean ? "Disponible" : "No disponible";
+
+
 
 const columns = [
   {
@@ -70,6 +67,10 @@ const columns = [
     format: (value) => value.toLocaleString('en-US')
   }
 
+
+
+
+
   // {
   //   id: 'nomProduct',
   //   label: 'Nombre del Producto',
@@ -79,154 +80,38 @@ const columns = [
   // }
 ];
 
-function createData(id, nomProduct, cat, marc, anim, prec, stk, edo) {
-  return { id, nomProduct, cat, marc, anim, prec, stk, edo };
-}
-
-// const rows = [
-//  /* {
-//     id: 1,
-//     nomProduct: 'Purina',
-//     marc: 'Purina',
-//     prec: '$200',
-//     stk: 4,
-//     edo: 'Activo',
-//     cat: 'Alimento'
-//   },
-//   {
-//     id: 2,
-//     nomProduct: 'Purina',
-//     marc: 'Purina',
-//     prec: '$200',
-//     stk: 4,
-//     edo: 'Activo',
-//     cat: 'Alimento'
-//   },
-//   {
-//     id: 3,
-//     nomProduct: 'Purina',
-//     marc: 'Purina',
-//     prec: '$200',
-//     stk: 4,
-//     edo: 'Activo',
-//     cat: 'Alimento'
-//   },
-//   {
-//     id: 4,
-//     nomProduct: 'Purina',
-//     marc: 'Purina',
-//     prec: '$200',
-//     stk: 4,
-//     edo: 'Activo',
-//     cat: 'Alimento'
-//   },
-//   {
-//     id: 5,
-//     nomProduct: 'Purina',
-//     marc: 'Purina',
-//     prec: '$200',
-//     stk: 4,
-//     edo: 'Activo',
-//     cat: 'Alimento'
-//   },
-//   {
-//     id: 6,
-//     nomProduct: 'Purina',
-//     marc: 'Purina',
-//     prec: '$200',
-//     stk: 4,
-//     edo: 'Activo',
-//     cat: 'Alimento'
-//   }*/
-// ];
+const createData = (id, nomProduct, cat, marc, anim, prec, stk, edo) => ({ id, nomProduct, cat, marc, anim, prec, stk, edo })
 
 const StorageTable = () => {
-  const [Productos, setProductos] = useState([]);
   const [Rows, setRows] = useState([]);
-  const [Categorias, setCategorias] = useState([]);
-  const [Marcas, setMarcas] = useState([]);
-  const [Animales, setAnimales] = useState([]);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+
+
+  const {data, error, isLoading} = useProduct()
+
+
+  if (isLoading) return <div>Loading...</div>
+  if (error) return <div>{error.message}</div>
+
+
+
+  const {animales: {animalProducto},  categorias:{categoria}, marcas:{marca} , productos:{producto} } = data
 
   useEffect(() => {
-    axios
-      .get(`${URL}/maestra/productoM`, {
-        headers: {
-          'x-token':
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI4MjYyOWNjYy01NTc3LTQwZmYtOWE3NS00MTM5ZDIyNWQ3YWQiLCJpYXQiOjE2ODIwNjY4MDksImV4cCI6MTY4MjY3MTYwOX0.Lk4RDAEweN-G3j9YxRpZiC3YJw4py75SVUleRkmFhls'
-        }
-      })
-      .then((res) => {
-        setProductos(res.data.producto);
-        console.log(res.data.producto);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-    axios
-      .get(`${URL}/catalogo/categoriaC`, {
-        headers: {
-          'x-token':
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI4MjYyOWNjYy01NTc3LTQwZmYtOWE3NS00MTM5ZDIyNWQ3YWQiLCJpYXQiOjE2ODIwNjY4MDksImV4cCI6MTY4MjY3MTYwOX0.Lk4RDAEweN-G3j9YxRpZiC3YJw4py75SVUleRkmFhls'
-        }
-      })
-      .then((res) => {
-        setCategorias(res.data.categoria);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-    axios
-      .get(`${URL}/catalogo/marcaC`, {
-        headers: {
-          'x-token':
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI4MjYyOWNjYy01NTc3LTQwZmYtOWE3NS00MTM5ZDIyNWQ3YWQiLCJpYXQiOjE2ODIwNjY4MDksImV4cCI6MTY4MjY3MTYwOX0.Lk4RDAEweN-G3j9YxRpZiC3YJw4py75SVUleRkmFhls'
-        }
-      })
-      .then((res) => {
-        setMarcas(res.data.marca);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-    axios
-      .get(`${URL}/catalogo/animalproductoC`, {
-        headers: {
-          'x-token':
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI4MjYyOWNjYy01NTc3LTQwZmYtOWE3NS00MTM5ZDIyNWQ3YWQiLCJpYXQiOjE2ODIwNjY4MDksImV4cCI6MTY4MjY3MTYwOX0.Lk4RDAEweN-G3j9YxRpZiC3YJw4py75SVUleRkmFhls'
-        }
-      })
-      .then((res) => {
-        setAnimales(res.data.animalProducto);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
-  useEffect(() => {
-    //let rows = [Productos];
-    //console.log(Productos);
-    if (Productos.length > 0) {
+    if(producto.length > 0){
       const rows = [];
-      Productos.forEach((producto) => {
-        rows.push(
-          {
-            id: producto.id_pro,
-            nomProduct: producto.nombre_pro,
-            cat: Categorias.find((item) => item.id_cat == producto.id_cat)
-              .nombre_cat,
-            marc: Marcas.find((item) => item.id_mar == producto.id_mar)
-              .nombre_mar,
-            anipro: Animales.find(
-              (item) => item.id_anipro == producto.id_anipro
-            ).nombre_anipro,
-            prec: `$ ${producto.precioVenta_pro}`,
-            stk: producto.stockId_pro,
-            edo: disponibility(producto.estado_pro)
-          }
+      producto.forEach((producto) => {
+        rows.push({
+          id: producto.id_pro,
+          nomProduct: producto.nombre_pro,
+          cat: categoria.find(item => item.id_cat == producto.id_cat).nombre_cat,
+          marc: marca.find(item => item.id_mar == producto.id_mar).nombre_mar,
+          anipro: animalProducto.find(item => item.id_anipro == producto.id_anipro).nombre_anipro,
+          prec: `$ ${producto.precioVenta_pro}`,
+          stk: producto.stockId_pro,
+          edo: disponibility(producto.estado_pro)
+        }
           // createData(
           //   producto.id_pro,
           //   producto.nombre_pro,
@@ -241,10 +126,15 @@ const StorageTable = () => {
       });
       setRows(rows);
     }
-  }, [Productos]);
 
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  }, [
+    producto,
+    categoria,
+    marca,
+    animalProducto,
+  ]);
+
+
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -283,5 +173,6 @@ const StorageTable = () => {
     </div>
   );
 };
+
 
 export default StorageTable;
