@@ -208,14 +208,14 @@ const FixedCosts = () => {
 
   return (
     <div className='pl-2 pt-28 w-4/5'>
-      <div className='flex flex-col items-center justify-center border-4 border-dashed rounded-md border-green-10'>
-        <h1 className='text-3xl py-3 font-bold text-green-10'>Pagos Fijos</h1>
+      <div className='flex flex-col items-center justify-center border-4 border-dashed rounded-md border-green'>
+        <h1 className='text-3xl py-3 font-bold text-green'>Pagos Fijos</h1>
         <form className='flex w-full mb-3 items-center justify-center'>
           <div className='flex flex-col mx-4 items-center justify-center w-1/2'>
             <div className='flex flex-col w-full'>
-              <label className='text-xl font-bold text-green-10'>Tipo de pago</label>
+              <label className='text-xl font-bold text-green'>Tipo de pago</label>
               <select
-                className='p-2 m-2 border-2 border-green-10 rounded-md'
+                className='p-2 m-2 border-2 border-green rounded-md'
                 name='service'
                 required
               >
@@ -228,18 +228,18 @@ const FixedCosts = () => {
               </select>
             </div>
             <div className='flex flex-col w-full'>
-              <label className='text-xl font-bold text-green-10'>Monto</label>
+              <label className='text-xl font-bold text-green'>Monto</label>
               <div className='relative'>
                 <div class='absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none'>
-                  <span className='text-green-10 sm:text-sm'>$</span>
+                  <span className='text-green sm:text-sm'>$</span>
                 </div>
-                <input type='number' className='w-full pl-4 p-2 m-2 border-2 border-green-10 rounded-md' placeholder='0' />
+                <input type='number' className='w-full pl-4 p-2 m-2 border-2 border-green rounded-md' placeholder='0' />
               </div>
             </div>
             <div className='flex flex-col w-full'>
-              <label className='text-xl font-bold text-green-10'>Fecha de pago</label>
+              <label className='text-xl font-bold text-green'>Fecha de pago</label>
               <input
-                className='p-2 m-2 border-2 border-green-10 rounded-md'
+                className='p-2 m-2 border-2 border-green rounded-md'
                 type='date'
                 name='date'
                 required
@@ -249,9 +249,9 @@ const FixedCosts = () => {
           <div className='flex flex-col items-center justify-center w-1/2'>
             {/* descripcion y boton de realizar pago */}
             <div className='flex flex-col w-full'>
-              <label className='text-xl font-bold text-green-10'>Descripción</label>
+              <label className='text-xl font-bold text-green'>Descripción</label>
               <textarea
-                className='p-2 m-2 border-2 border-green-10 rounded-md h-32'
+                className='p-2 m-2 border-2 border-green rounded-md h-32'
                 name='description'
                 placeholder='Descripción del pago'
                 required
@@ -259,7 +259,7 @@ const FixedCosts = () => {
             </div>
             <div className='flex flex-col w-full items-center justify-center'>
               <button
-                className='w-1/2 p-2 m-2 border-2 bg-green-10 rounded-md text-white font-bold'
+                className='w-1/2 p-2 m-2 border-2 bg-green rounded-md text-white font-bold'
                 type='submit'
               //onClick={handleSubmit}
               >
@@ -270,7 +270,7 @@ const FixedCosts = () => {
         </form>
       </div>
       <div className='flex items-center justify-center mt-20 cursor-pointer'>
-        <span className='bg-green-10 rounded-md text-white font-semibold py-2 px-8 text-2xl' onClick={handleOpen}>Registrar Servicio</span>    
+        <span className='bg-green rounded-md text-white font-semibold py-2 px-8 text-2xl' onClick={handleOpen}>Registrar Servicio</span>    
       </div>
       <FixedModal open={open} handleClose={handleClose} />
     </div>

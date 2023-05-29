@@ -5,6 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { apiVet } from '../services/api/instaceApi';
 import { useProduct } from '../hooks/useSWR';
+import { useNavigate } from 'react-router-dom';
 
 const AddProduct = () => {
 
@@ -13,6 +14,8 @@ const AddProduct = () => {
     formState: { errors },
     handleSubmit
   } = useForm();
+
+  const navigate = useNavigate();
 
 
   const { data: dataProduct, error, isLoading } = useProduct();
@@ -43,7 +46,7 @@ const AddProduct = () => {
         alert('Error al agregar el producto');
       });
 
-    location.replace('http://localhost:5173/Inventario');
+    navigate('/Inventario');
   };
 
   return (
@@ -52,7 +55,7 @@ const AddProduct = () => {
         className='flex flex-col items-center justify-center gap-5'
         onSubmit={handleSubmit(onSubmit)}
       >
-        <table className='table-auto border-separate border border-[#6ED4A5] '>
+        <table className='table-auto border-separate border border-green '>
           <tbody>
             <tr>
               <th>
@@ -231,7 +234,8 @@ const AddProduct = () => {
                     className='p-2'
                     type='submit'
                     onClick={(returnBtn) =>
-                      location.replace('http://localhost:5173/Inventario')
+                      // location.replace('http://localhost:5173/Inventario')
+                      navigate('/Inventario')
                     }
                   >
                     <p className='p-1 text-center'> + Agregar Producto </p>
@@ -243,7 +247,7 @@ const AddProduct = () => {
                   <button
                     className='p-2'
                     onClick={(returnBtn) =>
-                      location.replace('http://localhost:5173/Inventario')
+                      navigate()
                     }
                   >
                     <p className='p-1 text-center'> Cancelar </p>

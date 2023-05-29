@@ -41,6 +41,7 @@ const NewLot = () => {
       });
       formRef.current.reset();
       //window.location.href="/Inventario";
+      navigate('/Inventario');
     } catch (error) {
       alert(error);
     }

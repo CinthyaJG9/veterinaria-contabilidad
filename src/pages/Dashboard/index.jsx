@@ -141,17 +141,17 @@ const DatesDash = () => {
   return (
     <>
       {Mode ? (
-        <div className='flex h-screen w-screen'>
+        <div className='flex h-screen w-screen pt-20'>
           <div className='flex h-full w-full items-center'>
             <div className='h-6/7 w-full'>
               <div className='h-1/14 flex w-[100%]'>
-                <button className='ml-[4%] flex h-[7vh] w-[4%] items-center justify-center rounded-[2vw] border-[.5vh] border-green text-[3vh] text-[#757474] outline-none'>
+                {/*a<button className='ml-[4%] flex h-[7vh] w-[4%] items-center justify-center rounded-[2vw] border-[.5vh] border-green text-[3vh] text-[#757474] outline-none'>
                   <div className='flex h-[70%] w-[60%] items-center justify-center rounded-[50%] bg-green text-[3vh]'>
                     <AiOutlineArrowLeft />{' '}
-                    {/* Poner aquí el URL para el regreso */}
+                    {/* Poner aquí el URL para el regreso }
                   </div>
-                </button>
-                <div className='flex w-[83%] items-center justify-center text-3xl font-semibold text-green'>
+                </button>*/}
+                <div className='flex w-[83%] self-start pl-4 text-3xl font-semibold text-green'>
                   DashBoard
                 </div>
               </div>

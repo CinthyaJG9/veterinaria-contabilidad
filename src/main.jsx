@@ -95,7 +95,7 @@ const router = createBrowserRouter([
     )
   },
   {
-    path: 'pago-gastos-fijos',
+    path: '/pago-gastos-fijos',
     element: (
       <Nav>
         <FixedCosts />

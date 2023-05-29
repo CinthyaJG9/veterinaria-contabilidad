@@ -1,4 +1,5 @@
 import StorageTable from '../../../components/StorageTable';
+import { useNavigate } from 'react-router-dom';
 
 const VerProveedor = () => {
   return (
@@ -14,7 +15,8 @@ const VerProveedor = () => {
                 <button
                   className='p-2'
                   onClick={(redireccion) => {
-                    window.location.href = '/Proveedor';
+                    //window.location.href = '/Proveedor';
+                    navigate('/Proveedor');
                   }}
                 >
                   <p className='p-1 text-center'> Agregar Proveedor </p>
@@ -26,7 +28,8 @@ const VerProveedor = () => {
                 <button
                   className='p-2'
                   onClick={(redireccion) => {
-                    window.location.href = '/Proveedor';
+                    //window.location.href = '/Proveedor';
+                    navigate('/Proveedor');
                   }}
                 >
                   <p className='p-1 text-center'> Ver Proveedor </p>
@@ -38,7 +41,8 @@ const VerProveedor = () => {
                 <button
                   className='p-2'
                   onClick={(redireccion) => {
-                    window.location.href = '/NuevoLote';
+                    //window.location.href = '/NuevoLote';
+                    navigate('/NuevoLote');
                   }}
                 >
                   <p className='p-1 text-center'> Lote </p>
@@ -50,7 +54,8 @@ const VerProveedor = () => {
                 <button
                   className='p-2'
                   onClick={(redireccion) => {
-                    window.location.href = '/GastosFijos';
+                    //window.location.href = '/GastosFijos';
+                    navigate('/GastosFijos');
                   }}
                 >
                   <p className='p-1 text-center'>

@@ -22,7 +22,7 @@ export const Graph = ({ Name, Graph, click, data }) => {
         </p>
         {data ? (
           <button
-            className='y-[100%] absolute left-[37vw] top-[1vh] w-[10vh] rounded-[1vw] bg-green text-white outline-none'
+            className='y-[100%] absolute left-[31vw] top-[2vh] w-[10vh] rounded-[1vw] bg-green text-white outline-none'
             onClick={click}
           >
             Datos

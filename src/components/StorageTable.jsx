@@ -1,8 +1,7 @@
 import { DataGrid } from '@mui/x-data-grid';
-import { useEffect, useState } from 'react';
-import axios from "axios";
-
+import { useState } from 'react';
 import { useProduct } from "../hooks/useSWR";
+import { Link } from 'react-router-dom';
 
 
 const disponibility = (boolean) => boolean ? "Disponible" : "No disponible";
@@ -88,51 +87,47 @@ const StorageTable = () => {
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
 
-  const {data, error, isLoading} = useProduct()
+  const { data, error, isLoading } = useProduct()
 
 
   if (isLoading) return <div>Loading...</div>
   if (error) return <div>{error.message}</div>
 
 
+  const handleRows = (rows) => setRows(rows);
 
-  const {animales: {animalProducto},  categorias:{categoria}, marcas:{marca} , productos:{producto} } = data
 
-  useEffect(() => {
-    if(producto.length > 0){
-      const rows = [];
-      producto.forEach((producto) => {
-        rows.push({
-          id: producto.id_pro,
-          nomProduct: producto.nombre_pro,
-          cat: categoria.find(item => item.id_cat == producto.id_cat).nombre_cat,
-          marc: marca.find(item => item.id_mar == producto.id_mar).nombre_mar,
-          anipro: animalProducto.find(item => item.id_anipro == producto.id_anipro).nombre_anipro,
-          prec: `$ ${producto.precioVenta_pro}`,
-          stk: producto.stockId_pro,
-          edo: disponibility(producto.estado_pro)
-        }
-          // createData(
-          //   producto.id_pro,
-          //   producto.nombre_pro,
-          //   Categorias.find(item=>item.id_cat==producto.id_cat).nombre_cat,
-          //   Marcas.find(item=>item.id_mar==producto.id_mar).nombre_mar,
-          //   Animales.find(item=>item.id_anipro==producto.id_anipro).nombre_anipro,
-          //   `$ ${producto.precioVenta_pro}`,
-          //   producto.stockId_pro,
-          //   disponibility(producto.estado_pro)
-          // )
-        );
-      });
-      setRows(rows);
-    }
+  const { animales: { animalProducto }, categorias: { categoria }, marcas: { marca }, productos: { producto } } = data
 
-  }, [
-    producto,
-    categoria,
-    marca,
-    animalProducto,
-  ]);
+  
+
+  if (producto.length > 0) {
+    const rows = [];
+    producto.forEach((producto) => {
+      rows.push({
+        id: producto.id_pro,
+        nomProduct: producto.nombre_pro,
+        cat: categoria.find(item => item.id_cat == producto.id_cat).nombre_cat,
+        marc: marca.find(item => item.id_mar == producto.id_mar).nombre_mar,
+        anipro: animalProducto.find(item => item.id_anipro == producto.id_anipro).nombre_anipro,
+        prec: `$ ${producto.precioVenta_pro}`,
+        stk: producto.stockId_pro,
+        edo: disponibility(producto.estado_pro)
+      }
+        // createData(
+        //   producto.id_pro,
+        //   producto.nombre_pro,
+        //   Categorias.find(item=>item.id_cat==producto.id_cat).nombre_cat,
+        //   Marcas.find(item=>item.id_mar==producto.id_mar).nombre_mar,
+        //   Animales.find(item=>item.id_anipro==producto.id_anipro).nombre_anipro,
+        //   `$ ${producto.precioVenta_pro}`,
+        //   producto.stockId_pro,
+        //   disponibility(producto.estado_pro)
+        // )
+      );
+    });
+    handleRows(rows);
+  }
 
 
 
@@ -146,19 +141,15 @@ const StorageTable = () => {
   };
 
   return (
-    <div className='MuiBox-root css-0 z-0 flex h-full w-full flex-col items-center justify-center gap-5'>
-      <div className='p-2'>
-        <h1 className='font-Inter p-8 text-center text-4xl text-[#6ED4A5]'>
+    <div className='MuiBox-root css-0 mb-3 z-0 flex h-full w-full flex-col items-center justify-center gap-5'>
+      <div className='p-0'>
+        <h1 className='font-Inter p-3 text-center text-4xl text-green'>
           Inventario
         </h1>
       </div>
-
-      <div className='rounded-full border-4 border-[#6ED4A5] bg-[#6ED4A5]'>
-        <a href='./AddProduct'>
-          <button className='p-2'>+ Agregar Producto</button>
-        </a>
-      </div>
-
+      <Link to='/AddProduct' className='rounded-lg border-4 border-green bg-green p-1 flex items-center justify-center'>
+        + Agregar Producto
+      </Link>
       <div className='MuiBox-root h-[26rem] w-[1000px]'>
         <DataGrid
           rows={Rows}

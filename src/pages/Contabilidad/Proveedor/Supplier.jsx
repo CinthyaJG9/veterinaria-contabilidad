@@ -1,8 +1,10 @@
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
 
 const Supplier = () => {
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     /**
@@ -15,7 +17,7 @@ const Supplier = () => {
         }
          */
     try {
-      const response = await axios.post(
+      await axios.post(
         'https://veterinariamap6iv6-production.up.railway.app/api/v1/catalogo/proveedorC',
         {
           nombre_prov: e.target.provName.value,
@@ -111,8 +113,9 @@ const Supplier = () => {
                 <button
                   className='p-2'
                   type='submit'
-                  onClick={(redireccion) => {
-                    window.location.href = '/Inventario';
+                  onClick={() => {
+                    // window.location.href = '/Inventario';
+                    navigate('/Inventario');
                   }}
                 >
                   <p className='p-1 text-center'> + Agregar Proveedor </p>
@@ -123,8 +126,9 @@ const Supplier = () => {
               <div className='w-2/3 rounded-full border-4 border-[#6ED4A5] bg-[#6ED4A5]'>
                 <button
                   className='p-2'
-                  onClick={(redireccion) => {
-                    window.location.href = '/Inventario';
+                  onClick={() => {
+                    // window.location.href = '/Inventario';
+                    navigate('/Inventario');
                   }}
                 >
                   <p className='p-1 text-center'> Cancelar registro </p>

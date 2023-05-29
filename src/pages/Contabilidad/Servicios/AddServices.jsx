@@ -1,8 +1,10 @@
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
 
 const AddServices = () => {
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     /**
@@ -29,7 +31,8 @@ const AddServices = () => {
         }
       );
       console.log(response.data);
-      window.location.href = '/GastosFijos';
+      //window.location.href = '/GastosFijos';
+      navigate('/GastosFijos');
     } catch (error) {
       toast.error(`Ups! Hubo un error, ${error}`, {
         position: 'top-right',
@@ -103,7 +106,8 @@ const AddServices = () => {
                   className='p-2'
                   type='submit'
                   onClick={(redireccion) => {
-                    window.location.href = '/GastosFijos';
+                    //window.location.href = '/GastosFijos';
+                    navigate('/GastosFijos');
                   }}
                 >
                   <p className='p-1 text-center'> + Agregar Servicio </p>
@@ -115,7 +119,8 @@ const AddServices = () => {
                 <button
                   className='p-2'
                   onClick={(redireccion) => {
-                    window.location.href = '/GastosFijos';
+                    //window.location.href = '/GastosFijos';
+                    navigate('/GastosFijos');
                   }}
                 >
                   <p className='p-1 text-center'> Cancelar registro </p>

@@ -1,8 +1,47 @@
 import { Modal } from "@mui/material";
 import { BsTools } from "react-icons/bs";
+import { apiVet } from "../../services/api/instaceApi";
+import { useNavigate } from "react-router-dom";
 
 const FixedModal = ({ open, handleClose }) => {
 
+    const navite = useNavigate();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        /**
+         * {
+          headers:{
+            "x-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJmMzIwZjQyOS03NGQ5LTQ3ZGQtYjc0Ny0zMjhlOWM3YTE2Y2EiLCJpYXQiOjE2ODE5NjcxNjcsImV4cCI6MTY4MjU3MTk2N30.l1coPHj-uH7YuOqZgc5EEOh3tltyPzIWParcvMamnSc"
+          },
+          nombre_ser:e.target.serviceName.value,
+          descripcion_ser:e.target.serviceDesc.value
+        }
+         */
+        try {
+            const response = await apiVet.post(
+                '/catalogo/servicioC',
+                {
+                    nombre_ser: e.target.serviceName.value,
+                    descripcion_ser: e.target.serviceDesc.value
+                },
+            );
+            console.log(response.data);
+            //window.location.href = '/GastosFijos';
+            navigate('/GastosFijos');
+        } catch (error) {
+            toast.error(`Ups! Hubo un error, ${error}`, {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'dark'
+            });
+        }
+    };
     return (
         <Modal
             open={open}
@@ -11,8 +50,8 @@ const FixedModal = ({ open, handleClose }) => {
             aria-describedby="modal-modal-description"
         >
             <div className='h-modal fixed left-0 right-0 top-0 z-50 flex w-full items-center justify-center overflow-y-auto overflow-x-hidden p-4 md:inset-0 md:h-full'>
-                <div className='mb-1 h-auto w-auto rounded-lg border-4 border-dashed border-green-10 bg-white p-5 md:w-2/5'>
-                    <div className='mb-6 flex cursor-pointer text-green-10'>
+                <div className='mb-1 h-auto w-auto rounded-lg border-4 border-dashed border-green bg-white p-5 md:w-2/5'>
+                    <div className='mb-6 flex cursor-pointer text-green'>
                         <BsTools className='float-left mr-3' size={30} />
                         <h2 className='ml-2 text-3xl'>
                             Registrar Servicios
@@ -38,29 +77,30 @@ const FixedModal = ({ open, handleClose }) => {
                             <span className='sr-only'>Close modal</span>
                         </button>
                     </div>
-                    <form className='flex flex-col w-full'>
+                    <form onSubmit={handleSubmit} className='flex flex-col w-full'>
                         <div className='flex flex-col w-full'>
-                            <label className='text-xl font-bold text-green-10'>Nombre del servicio</label>
+                            <label className='text-xl font-bold text-green'>Nombre del servicio</label>
                             <input
-                                className='p-2 m-2 border-2 border-green-10 rounded-md'
+                                className='p-2 m-2 border-2 border-green rounded-md'
                                 type='text'
-                                name='name'
+                                name='serviceName'
                                 placeholder='Nombre del servicio'
                                 required
                             />
                         </div>
                         <div className='flex flex-col w-full'>
-                            <label className='text-xl font-bold text-green-10'>Descripción</label>
-                            <textarea
-                                className='p-2 m-2 border-2 border-green-10 rounded-md h-32'
-                                name='description'
+                            <label className='text-xl font-bold text-green'>Descripción</label>
+                            <input
+                                className='p-2 m-2 border-2 border-green rounded-md h-32'
+                                name='serviceDesc'
                                 placeholder='Descripción del servicio'
+                                type='text'
                                 required
                             />
                         </div>
                         <div className='flex flex-col w-full'>
                             <button
-                                className='w-1/2 p-2 m-2 border-2 bg-green-10 rounded-md text-white font-bold'
+                                className='w-1/2 p-2 m-2 border-2 bg-green rounded-md text-white font-bold'
                                 type='submit'
                             //onClick={handleSubmit}
                             >
