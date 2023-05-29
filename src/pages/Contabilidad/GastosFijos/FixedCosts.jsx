@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { useRef } from 'react';
+import FixedModal from '../../../components/fixed/Modal';
 
 const FixedCosts = () => {
-  const URL = 'https://veterinariamap6iv6-production.up.railway.app/api/v1';
+
+  /*const URL = 'https://veterinariamap6iv6-production.up.railway.app/api/v1';
   const formRef = useRef();
   const [Servicios, setServicios] = useState([]);
   const [Descripcion, setDescripcion] = useState('');
@@ -29,7 +29,7 @@ const FixedCosts = () => {
   console.log(serviceChoice);
   const handleChange = (event) => {
     /*console.log(event.target.value);
-    console.log(Servicios.find(item=>item.id_ser==event.target.value));*/
+    console.log(Servicios.find(item=>item.id_ser==event.target.value));
     //1=="1" true
     setDescripcion(
       Servicios.find((item) => item.id_ser == event.target.value)
@@ -38,7 +38,7 @@ const FixedCosts = () => {
     setServiceChoise(
       Servicios.find((item) => item.id_ser == event.target.value).id_ser
     );
-  };
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -51,7 +51,7 @@ const FixedCosts = () => {
     });
     //const periodos = data.periodo;
     /*console.log(periodos);
-    console.log(new Date(`${e.target.date.value}T00:00:00`));*/
+    console.log(new Date(`${e.target.date.value}T00:00:00`));
     const periodoPerteneciente = data.periodo.find(
       (item) =>
         new Date(item.fechaInicio_per) <
@@ -170,151 +170,109 @@ const FixedCosts = () => {
      *
      */
 
-    //console.log(new Date(`${e.target.date.value}T00:00:00`));
+  //console.log(new Date(`${e.target.date.value}T00:00:00`));
 
-    /*const response=await axios.post(`${URL}/maestra/gastoFijoM`,{
-      headers: {
-        "x-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJmMzIwZjQyOS03NGQ5LTQ3ZGQtYjc0Ny0zMjhlOWM3YTE2Y2EiLCJpYXQiOjE2ODE5NjcxNjcsImV4cCI6MTY4MjU3MTk2N30.l1coPHj-uH7YuOqZgc5EEOh3tltyPzIWParcvMamnSc"
-      }
-    },{
-      fecha_gastofijo:e.target.date.value,
-      monto_gastofijo:e.target.monto.value,
-      id_ser: ServiceChoise,
-      id_per: ,
-    })*/
-    //const response=await
-  };
+  /*const response=await axios.post(`${URL}/maestra/gastoFijoM`,{
+    headers: {
+      "x-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJmMzIwZjQyOS03NGQ5LTQ3ZGQtYjc0Ny0zMjhlOWM3YTE2Y2EiLCJpYXQiOjE2ODE5NjcxNjcsImV4cCI6MTY4MjU3MTk2N30.l1coPHj-uH7YuOqZgc5EEOh3tltyPzIWParcvMamnSc"
+    }
+  },{
+    fecha_gastofijo:e.target.date.value,
+    monto_gastofijo:e.target.monto.value,
+    id_ser: ServiceChoise,
+    id_per: ,
+  })
+  //const response=await
+};*/
+
+  const services = [
+    {
+      id_ser: 1,
+      nombre_ser: 'Agua'
+    },
+    {
+      id_ser: 2,
+      nombre_ser: 'Luz'
+    },
+    {
+      id_ser: 3,
+      nombre_ser: 'Internet'
+    }
+  ];
+
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => setOpen(true);
+
+  const handleClose = () => setOpen(false);
 
   return (
-    <div className='MuiBox-root css-0 z-0 flex h-screen w-full flex-col items-center justify-center gap-5'>
-      <ToastContainer
-        position='top-right'
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme='dark'
-      />
-      <form method='GET' onSubmit={handleSubmit} ref={formRef}>
-        <div class='grid grid-cols-3 gap-7'>
-          <div class='col-span-1'>¡Bienvenido!</div>
-          <div class='col-span-2'>
-            <h1 className='font-Inter p-8 text-2xl font-bold '>Pagos Fijos</h1>
-          </div>
-
-          <div class='col-span-1'>
-            <h1 className='font-Inter p-8 text-2xl font-bold '>Gerente</h1>
-          </div>
-          <div class='col-span-1'>
-            <p className='font-Inter p-8 text-left text-xl'>
-              {' '}
-              Seleccione el servicio a pagar:{' '}
-            </p>
-            <select
-              className='w-11/12 rounded-md border border-slate-300 py-2 pl-9 pr-9 text-center shadow-sm focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm'
-              defaultValue='1'
-              onChange={handleChange}
-            >
-              {Servicios &&
-                Servicios.map((servicio) => {
-                  return (
-                    <option key={servicio.id_ser} value={servicio.id_ser}>
-                      {servicio.nombre_ser}
-                    </option>
-                  );
-                })}
-            </select>
-          </div>
-          <div class='col-span-1'>
-            <p className='font-Inter p-8 text-left text-xl'> Descripcion: </p>
-          </div>
-
-          <div class='col-span-1'>
-            <p className='text-center underline-offset-2'>
-              {' '}
-              Pago de Gastos Fijos{' '}
-            </p>
-          </div>
-          <div class='col-span-1'>
-            <select classname='w-full' placeholder='Tipo de Pago' />
-          </div>
-          <div class='col-span-1'>
-            <input
-              className='w-11/12 rounded-md border border-slate-300 py-2 pl-9 pr-9 text-center shadow-sm focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm'
-              placeholder='Descripcion'
-              type='text'
-              value={Descripcion}
-            />
-          </div>
-
-          <div class='col-span-1'>
-            <button className='p-2'>
-              <p className='p-1 text-center'> Pago de Gastos Generales </p>
-            </button>
-          </div>
-          <div class='col-span-1'>
-            <p className='font-Inter p-8 text-left text-xl'> Monto: </p>
-          </div>
-          <div class='col-span-1'>
-            <input
-              className='w-11/12 rounded-md border border-slate-300 py-2 pl-9 pr-9 text-center shadow-sm focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm'
-              placeholder='Monto'
-              type='number'
-              name='monto'
-            />
-          </div>
-
-          <div class='col-span-1'>
-            <p className='font-Inter p-8 text-left text-xl'> Fecha de pago: </p>
-          </div>
-          <div class='col-span-1'>
-            <input
-              className='w-11/12 rounded-md border border-slate-300 py-2 pl-9 pr-9 text-center shadow-sm focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm'
-              placeholder='Fecha de pago'
-              type='date'
-              name='date'
-            />
-          </div>
-          <br></br>
-
-          <br></br>
-          <div class='col-span-1'>
-            <div className='w-2/3 rounded-full border-4 border-[#6ED4A5] bg-[#6ED4A5]'>
-              <button className='p-2' type='submit'>
-                <p className='p-1 text-center'> Registrar pago </p>
-              </button>
-            </div>
-          </div>
-          <div class='col-start-2 col-end-4'>
-            <div className='w-2/3 rounded-full border-4 border-[#6ED4A5] bg-[#6ED4A5]'>
-              <button
-                className='p-2'
-                onClick={(redireccion) => {
-                  window.location.href = '/Servicios';
-                }}
+    <div className='pl-2 pt-28 w-4/5'>
+      <div className='flex flex-col items-center justify-center border-4 border-dashed rounded-md border-green-10'>
+        <h1 className='text-3xl py-3 font-bold text-green-10'>Pagos Fijos</h1>
+        <form className='flex w-full mb-3 items-center justify-center'>
+          <div className='flex flex-col mx-4 items-center justify-center w-1/2'>
+            <div className='flex flex-col w-full'>
+              <label className='text-xl font-bold text-green-10'>Tipo de pago</label>
+              <select
+                className='p-2 m-2 border-2 border-green-10 rounded-md'
+                name='service'
+                required
               >
-                <p className='p-1 text-center'> Registrar Servicio </p>
-              </button>
+                <option value='' defaultValue disabled>Seleccione un servicio</option>
+                {services.map((service) => (
+                  <option key={service.id_ser} value={service.id_ser}>
+                    {service.nombre_ser}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className='flex flex-col w-full'>
+              <label className='text-xl font-bold text-green-10'>Monto</label>
+              <div className='relative'>
+                <div class='absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none'>
+                  <span className='text-green-10 sm:text-sm'>$</span>
+                </div>
+                <input type='number' className='w-full pl-4 p-2 m-2 border-2 border-green-10 rounded-md' placeholder='0' />
+              </div>
+            </div>
+            <div className='flex flex-col w-full'>
+              <label className='text-xl font-bold text-green-10'>Fecha de pago</label>
+              <input
+                className='p-2 m-2 border-2 border-green-10 rounded-md'
+                type='date'
+                name='date'
+                required
+              />
             </div>
           </div>
-          <div class='col-start-2 col-end-4'>
-            <div className='w-2/3 rounded-full border-4 border-[#6ED4A5] bg-[#6ED4A5]'>
+          <div className='flex flex-col items-center justify-center w-1/2'>
+            {/* descripcion y boton de realizar pago */}
+            <div className='flex flex-col w-full'>
+              <label className='text-xl font-bold text-green-10'>Descripción</label>
+              <textarea
+                className='p-2 m-2 border-2 border-green-10 rounded-md h-32'
+                name='description'
+                placeholder='Descripción del pago'
+                required
+              />
+            </div>
+            <div className='flex flex-col w-full items-center justify-center'>
               <button
-                className='p-2'
-                onClick={(redireccion) => {
-                  window.location.href = '/Inventario';
-                }}
+                className='w-1/2 p-2 m-2 border-2 bg-green-10 rounded-md text-white font-bold'
+                type='submit'
+              //onClick={handleSubmit}
               >
-                <p className='p-1 text-center'> Regresar al Inventario </p>
+                Realizar pago
               </button>
             </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
+      <div className='flex items-center justify-center mt-20 cursor-pointer'>
+        <span className='bg-green-10 rounded-md text-white font-semibold py-2 px-8 text-2xl' onClick={handleOpen}>Registrar Servicio</span>    
+      </div>
+      <FixedModal open={open} handleClose={handleClose} />
     </div>
   );
 };
