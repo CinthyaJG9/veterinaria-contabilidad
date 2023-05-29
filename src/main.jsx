@@ -15,52 +15,99 @@ import './index.css';
 import AddProduct from './components/AddProduct';
 import { BASE_URL_API, axiosError, axiosSuccess } from '@/libs';
 import Libro from '@/pages/Libro/index.jsx';
+import Nav from './components/Nav';
+
+import { SWRConfig } from 'swr'
+import { apiVet } from './services/api/instaceApi'
+
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App />
-  },
-  {
-    path: '/GastosFijos',
-    element: <FixedCosts />
+    element: (
+      <Nav>
+        <App />
+      </Nav>
+    )
   },
   {
     path: '/Inventario',
-    element: <Storage />
+    element: (
+      <Nav>
+        <Storage />
+      </Nav>
+    )
   },
   {
     path: '/AddProduct',
-    element: <AddProduct />
+    element: (
+      <Nav>
+        <AddProduct />
+      </Nav>
+    )
   },
   {
     path: '/PuntoVenta',
-    element: <SalePoint />
+    element: (
+      <Nav>
+        <SalePoint />
+      </Nav>
+    )
   },
   {
     path: '/Servicios',
-    element: <AddServices />
+    element: (
+      <Nav>
+        <AddServices />
+      </Nav>
+    )
   },
   {
     path: '/Inicio',
-    element: <PrincipalStorage />
+    element: (
+      <Nav>
+        <PrincipalStorage />
+      </Nav>
+    )
   },
   {
     path: '/Proveedor',
-    element: <Supplier />
+    element: (
+      <Nav>
+        <Supplier />
+      </Nav>
+    )
   },
   {
     path: '/NuevoLote',
-    element: <NewLot />
+    element: (
+      <Nav>
+        <NewLot />
+      </Nav>
+    )
   },
   {
     path: '/Libro',
-    element: <Libro />
+    element: (
+      <Nav>
+        <Libro />
+      </Nav>
+    )
+  },
+  {
+    path: 'pago-gastos-fijos',
+    element: (
+      <Nav>
+        <FixedCosts />
+      </Nav>
+    )
   }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <SWRConfig value={{ fetcher: (url) => apiVet.get(url).then(({data}) => data).catch(axiosError) }}>
+      <RouterProvider router={router} />
+    </SWRConfig>
   </React.StrictMode>
 );
